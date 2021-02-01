@@ -2,10 +2,12 @@
 from .decode import feature_to_y
 
 def accuracy(output, target):
+    o = output[0]
     output = feature_to_y(output)   #  把特征向量解码为标签序列
     if torch.cuda.is_available():
         target = target.cpu()
     target = target.numpy().tolist()  # 把目标序列从tensor转换为列表
+    # print(output[0], target[0])
     with torch.no_grad():
         correct=0
         for i in range(len(output)): # 计算序列相同的个数

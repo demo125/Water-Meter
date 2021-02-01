@@ -84,7 +84,8 @@ class FCN(nn.Module):
         )
         
         self.block5 = ResidualBlockA(48, out_channel)
-        
+        self.dropout = nn.Dropout(p=0.5)
+
     def forward(self, x):
         x = self.block1(x)
         if self.verbose:
@@ -101,7 +102,8 @@ class FCN(nn.Module):
         x = self.block5(x)
         if self.verbose:
             print("block 5 output : {}".format(x.shape))
-        
+        x = self.dropout(x)
+        # print('added droput')
         return x
 
 class TSMLayer(nn.Module):
@@ -123,7 +125,7 @@ class WaterMeterModel(BaseModel):
     def __init__(self, num_classes=10):
         super().__init__()
         self.fcn = FCN(3, 48)
-        self.tsm = TSMLayer(48, 21)
+        self.tsm = TSMLayer(48, 12)
 
     def forward(self, x):
         x = self.fcn(x)

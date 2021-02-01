@@ -26,8 +26,8 @@ def main(config):
 
     # build model architecture, then print to console
     model = config.init_obj('arch', module_arch)
-    logger.info(model)
-
+    # logger.info(model)
+    
     # get function handles of loss and metrics
     criterion = getattr(module_loss, config['loss'])
     metrics = [getattr(module_metric, met) for met in config['metrics']]

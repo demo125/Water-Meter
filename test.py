@@ -17,13 +17,13 @@ def main(config):
         batch_size=512,
         shuffle=False,
         validation_split=0.0,
-        training=False,
+        mode='test',
         num_workers=2
     )
 
     # build model architecture
     model = config.init_obj('arch', module_arch)
-    logger.info(model)
+    # logger.info(model)
 
     # get function handles of loss and metrics
     loss_fn = getattr(module_loss, config['loss'])

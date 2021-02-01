@@ -1,6 +1,6 @@
 {
     "name": "WMN_FCSRN",
-    "n_gpu": 0,
+    "n_gpu": 4,
 
     "arch": {
         "type": "WaterMeterModel",
@@ -9,11 +9,11 @@
     "data_loader": {
         "type": "WaterMeterDataLoader",
         "args":{
-            "data_dir": "C:/Users/10138/Documents/yottacloud/code/water-meter/data/",
+            "data_dir": "/home/mde/python/Water-Meter/data/",
             "batch_size": 32,
             "shuffle": true,
             "validation_split": 0.1,
-            "num_workers": 0
+            "num_workers": 10
         }
     },
     "optimizer": {
@@ -36,12 +36,11 @@
         }
     },
     "trainer": {
-        "epochs": 100,
+        "epochs": 500,
 
-        "save_dir": "C:/Users/10138/Documents/yottacloud/code/water-meter/saved/",
+        "save_dir": "/home/mde/python/Water-Meter/saved/",
         "save_period": 1,
         "verbosity": 2,
-        
         "monitor": "min val_loss",
         "early_stop": 10,
 
